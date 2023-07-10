@@ -1,0 +1,20 @@
+.container{
+    background-color: #F3E5AB;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.title{
+    margin-left: 650px;
+}
+.typographyStyle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.cardStyle{
+    width: 45%;
+    margin: 20px;
+    flex-shrink: 0;
+}

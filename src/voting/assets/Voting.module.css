@@ -1,0 +1,12 @@
+.containerIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    gap: 20px;    
+}
+.containerSwitch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

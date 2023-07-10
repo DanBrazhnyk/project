@@ -1,0 +1,30 @@
+.containerInput{
+    display: flex;
+    justify-content: center;
+    margin-top:40px;
+}
+.containerLists{
+    margin-top:2%;
+    margin-left:38%;
+    
+}
+.ListsItem {
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    margin: 15px;
+    padding: 15px;
+    width: 330px;
+    overflow-x: auto;
+  }
+  
+  .ListsItem span {
+    flex-grow: 1;
+  }
+  
+  .ListsItem > :last-child {
+    margin-left: auto;
+  }
+  .editIcon{
+    margin-right:10px;
+  }
