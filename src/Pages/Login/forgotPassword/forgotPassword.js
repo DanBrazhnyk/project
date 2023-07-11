@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { EmptyForgot, inputEmail, forgotPassword } from "../functions/Functions";
+import { EmptyForgot, inputEmail, forgotPassword } from "../loginSlice/loginSlice";
 import { Link } from "react-router-dom";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

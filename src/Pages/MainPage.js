@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import {isNotLogined} from "./Login/functions/Functions";
+import {isNotLogined} from "./Login/loginSlice/loginSlice";
 import { useNavigate } from "react-router-dom";
 const MainMenu = () => {
   const dispatch = useDispatch();

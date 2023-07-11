@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import methodsReducer from "../todo_list/functions/Functions";
-import loginReducer from "../Pages/Login/functions/Functions"
+import methodsReducer from "../todo_list/todoSlice/todoSlice";
+import loginReducer from "../Pages/Login/loginSlice/loginSlice"
+import usersReducer from "../list_users/userSlice/userSlice"
 
 export const store = configureStore({
   reducer: {
     methods: methodsReducer,
-    login: loginReducer
+    login: loginReducer,
+    users: usersReducer
   },
 });

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add, edit, deleteTodo, addInput, editInput, saveEdit } from "../functions/Functions";
+import { add, edit, deleteTodo, addInput, editInput, saveEdit } from "../todoSlice/todoSlice";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";

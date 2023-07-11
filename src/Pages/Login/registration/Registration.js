@@ -1,9 +1,8 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { inputEmail,inputPassword,EmptyFields,registration} from "../functions/Functions";
+import { inputEmail,inputPassword,EmptyFields,registration} from "../loginSlice/loginSlice";
 import { Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Paper from "@mui/material/Paper";

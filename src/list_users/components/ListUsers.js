@@ -5,44 +5,23 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import styles from "../assets/List.module.css";
+import { useDispatch,useSelector} from "react-redux";
+import { fetchAlbumById,fetchPhotosById} from "../userSlice/userSlice";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [albums, setAlbums] = useState([]);
-  const [photos, setPhotos] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState(null);
-  const [selectedAlbumId, setSelectedAlbumId] = useState(null);
-  const [expandedCardIds, setExpandedCardIds] = useState([]);
-
+  const loading = useSelector((state) =>state.users.loading)
+  const errorMessage = useSelector((state) => state.users.errorMessage)
+  const albums = useSelector((state) => state.users.albums)
+  const photos = useSelector((state) => state.users.photos)
+  const dispatch = useDispatch()
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
-  }, []);
-
-  const handleAlbumClick = (userId) => {
-    fetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`)
-      .then((response) => response.json())
-      .then((data) => setAlbums(data))
-      .catch((error) => console.log(error));
-
-    setSelectedUserId(userId);
-    setExpandedCardIds((prevIds) => [...prevIds, userId]);
-  };
-
-  const handlePhotosClick = (albumId) => {
-    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
-      .then((response) => response.json())
-      .then((data) => setPhotos(data))
-      .catch((error) => console.log(error));
-
-    setSelectedAlbumId(albumId);
-  };
-
-  const isCardExpanded = (cardId) => {
-    return expandedCardIds.includes(cardId);
-  };
+  }, []);;
 
   return (
     <div className={styles.container}>
@@ -58,7 +37,7 @@ const UserList = () => {
       {users.map((user) => (
         <Card
         className={styles.cardStyle}
-          style={{height: isCardExpanded(user.id) ? "auto" : "fit-content",}}
+          style={{height:"auto" }}
           key={user.id}
         >
           <Typography
@@ -78,24 +57,22 @@ const UserList = () => {
           </Typography>
           <Button
           style={{margin: '0 auto', display: "flex",marginBottom:"10px"}}
-            onClick={() => handleAlbumClick(user.id)}
+            onClick={() => dispatch(fetchAlbumById(user.id))}
             variant="contained" 
             color="success"
           >
             Album
           </Button>
-          {selectedUserId === user.id && (
-            <Card>
+          {albums.map((album) => (
+            <Card  key={album.id}>
               <Typography
                 className={styles.typographyStyle}
                 gutterBottom
                 variant="h5"
                 component="div"
               >
-                User albums {user.name}
+                User albums
               </Typography>
-              {albums.map((album) => (
-                <Card key={album.id}>
                   <hr />
                   <Typography
                     className={styles.typographyStyle}
@@ -107,14 +84,13 @@ const UserList = () => {
                   </Typography>
                   <Button
                   style={{margin: '0 auto', display: "flex",marginBottom:"10px"}}
-                    onClick={() => handlePhotosClick(album.id)}
+                    onClick={() => dispatch(fetchPhotosById(album.id))}
                     variant="contained" 
                     color="success"
                   >
                     Photos
-                  </Button>
-
-                  {selectedAlbumId === album.id && (
+                  </Button>  
+                        {photos.map((photo) => (
                     <Card className={styles.typographyStyle}>
                       <hr />
                       <ImageList
@@ -122,19 +98,16 @@ const UserList = () => {
                         cols={3}
                         rowHeight={164}
                       >
-                        {photos.map((photo) => (
                           <ImageListItem key={photo.id}>
                             <img src={photo.url} alt="error" />
                           </ImageListItem>
-                        ))}
                       </ImageList>
                     </Card>
-                  )}
-                </Card>
+                        ))}
+              </Card>
               ))}
             </Card>
-          )}
-        </Card>
+          
       ))}
     </div>
   );

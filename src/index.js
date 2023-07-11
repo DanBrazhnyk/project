@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import { store } from './store/Store';
 import { Login } from './Pages/Login/Login';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
-import Registration from './Pages/Login/signUP/Registration';
+import Registration from './Pages/Login/registration/Registration';
 import ForgotPassword from './Pages/Login/forgotPassword/forgotPassword';
 const router = createBrowserRouter([
   {

@@ -4,6 +4,10 @@
     display: flex;
     flex-wrap: wrap;
 }
+.cardStyle{
+    width: 45%;
+    margin: 20px;
+}
 .title{
     margin-left: 650px;
 }
@@ -12,9 +16,4 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-}
-.cardStyle{
-    width: 45%;
-    margin: 20px;
-    flex-shrink: 0;
 }
