@@ -6,14 +6,14 @@ import Todo from './todo_list/Todo';
 import Voting from './voting/components/Voting';
 import UserList from './list_users/components/ListUsers';
 import Contacts from './contacts/components/Contacts';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from './store/Store';
 import { Login } from './Pages/Login/Login';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import Registration from './Pages/Login/registration/Registration';
 import ForgotPassword from './Pages/Login/forgotPassword/forgotPassword';
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <PrivateRoute />,
