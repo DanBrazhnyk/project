@@ -13,13 +13,11 @@ export const fetchPhotosById = createAsyncThunk(
      async(albumId)=>{
         const response = await  fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
         const parsedData =await response.json()
-
         return parsedData;
      }
     )
 
 const initialState = {
-  loading: false,
   albums:[],
   photos:[],
   errorMessage:false
@@ -30,26 +28,17 @@ const Users = createSlice({
   initialState,
   reducers: { },
   extraReducers:(builder)=>{
-  builder.addCase(fetchAlbumById.pending,(state)=>{
-    state.loading =true
-  })
+  builder
   .addCase(fetchAlbumById.fulfilled,(state,action)=>{
-    state.loading=false
     state.albums.push(...action.payload)
   }) 
   .addCase(fetchAlbumById.rejected,(state)=>{
-    state.loading = false
     state.errorMessage=true
   })
-  .addCase(fetchPhotosById.pending,(state)=>{
-    state.loading =true
-  }) 
   .addCase(fetchPhotosById.fulfilled,(state,action)=>{
-    state.loading =false
     state.photos.push(...action.payload)
   })
   .addCase(fetchPhotosById.rejected,(state)=>{
-    state.loading = false
     state.errorMessage=true
   })
   }

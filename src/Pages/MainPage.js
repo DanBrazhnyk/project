@@ -1,16 +1,18 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import {isNotLogined} from "./Login/loginSlice/loginSlice";
+import { isNotLogined } from "./Login/loginSlice/loginSlice";
 import { useNavigate } from "react-router-dom";
+
 const MainMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogOut = () => {
     dispatch(isNotLogined());
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
   return (
     <div
@@ -31,79 +33,94 @@ const MainMenu = () => {
           alignItems: "center",
         }}
       >
-        <div style={{ marginLeft: "10px", marginRight: "auto" }}>
+       <div style={{ marginLeft: "10px", marginRight: "auto" }}>
           <Button
-            style={{ backgroundColor: "#9400D3", borderRadius: "10px" }}
             variant="outlined"
+            sx={{
+              backgroundColor: "#9400D3",
+              borderRadius: "10px",
+              color: "#ffffffff",
+              textDecoration: "none",
+            }}
+            component={NavLink}
+            to="/"
+            isActive={(match, location) => location.pathname === "/" || location.pathname === "/home"}
           >
-            <Link style={{ color: "#ffffffff", textDecoration: "none" }} to="/">
-              Home
-            </Link>
+            Home
           </Button>
         </div>
         <div style={{ marginRight: "17px" }}>
           <Button
-            style={{ backgroundColor: "#9400D3", borderRadius: "10px" }}
             variant="outlined"
+            sx={{
+              backgroundColor: "#9400D3",
+              borderRadius: "10px",
+              color: "#ffffffff",
+              textDecoration: "none",
+            }}
+            component={Link}
+            to="/todo_list"
           >
-            <Link
-              style={{ color: "#ffffffff", textDecoration: "none" }}
-              to="/todo_list"
-            >
-              todo_list
-            </Link>
+            todo_list
           </Button>
         </div>
         <div style={{ marginRight: "17px" }}>
           <Button
-            style={{ backgroundColor: "#9400D3", borderRadius: "10px" }}
             variant="outlined"
+            sx={{
+              backgroundColor: "#9400D3",
+              borderRadius: "10px",
+              color: "#ffffffff",
+              textDecoration: "none",
+            }}
+            component={Link}
+            to="/Voting"
           >
-            <Link
-              style={{ color: "#ffffffff", textDecoration: "none" }}
-              to="/Voting"
-            >
-              Voting
-            </Link>
+            Voting
           </Button>
         </div>
         <div style={{ marginRight: "17px" }}>
           <Button
-            style={{ backgroundColor: "#9400D3", borderRadius: "10px" }}
             variant="outlined"
+            sx={{
+              backgroundColor: "#9400D3",
+              borderRadius: "10px",
+              color: "#ffffffff",
+              textDecoration: "none",
+            }}
+            component={Link}
+            to="/UserList"
           >
-            <Link
-              style={{ color: "#ffffffff", textDecoration: "none" }}
-              to="/UserList"
-            >
-              UserList
-            </Link>
+            UserList
           </Button>
         </div>
         <div style={{ marginRight: "17px" }}>
           <Button
-            style={{ backgroundColor: "#9400D3", borderRadius: "10px" }}
             variant="outlined"
+            sx={{
+              backgroundColor: "#9400D3",
+              borderRadius: "10px",
+              color: "#ffffffff",
+              textDecoration: "none",
+            }}
+            component={Link}
+            to="/Contacts"
           >
-            <Link
-              style={{ color: "#ffffffff", textDecoration: "none" }}
-              to="/Contacts"
-            >
-              Contacts
-            </Link>
+            Contacts
           </Button>
         </div>
         <div style={{ marginLeft: "400px", marginRight: "20px" }}>
           <Button
-            style={{ backgroundColor: "#9400D3", borderRadius: "10px" }}
             variant="outlined"
-            onClick={()=>{handleLogOut()}}
+            sx={{
+              backgroundColor: "#9400D3",
+              borderRadius: "10px",
+              color: "#ffffffff",
+              textDecoration: "none",
+            }}
+            onClick={handleLogOut}
           >
-            <Link
-              style={{ color: "#ffffffff", textDecoration: "none" }}
-            >
-              Logout
-            </Link>
+            Logout
           </Button>
         </div>
       </div>

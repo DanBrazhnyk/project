@@ -1,114 +1,161 @@
 import React, { useState, useEffect } from "react";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import Card from "@mui/material/Card";
-import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {fetchAlbumById,fetchPhotosById,} from "../userSlice/userSlice";
+import {Button,Card,CircularProgress,Grid,ImageList,ImageListItem,Typography} from "@mui/material";
 import styles from "../assets/List.module.css";
-import { useDispatch,useSelector} from "react-redux";
-import { fetchAlbumById,fetchPhotosById} from "../userSlice/userSlice";
-import CircularProgress from '@mui/material/CircularProgress';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const loading = useSelector((state) =>state.users.loading)
-  const errorMessage = useSelector((state) => state.users.errorMessage)
-  const albums = useSelector((state) => state.users.albums)
-  const photos = useSelector((state) => state.users.photos)
-  const dispatch = useDispatch()
+  const [userAlbums, setUserAlbums] = useState({});
+  const [albumPhotos, setAlbumPhotos] = useState({});
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [loadingPhotos, setLoadingPhotos] = useState({});
+  const dispatch = useDispatch();
+
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
-  }, []);;
+  }, []);
+
+  const handleAlbumClick = (userId) => {
+    if (selectedUser === userId) {
+      setSelectedUser(null);
+      return;
+    }
+
+    setSelectedUser(userId);
+
+    if (!userAlbums[userId]) {
+      dispatch(fetchAlbumById(userId)).then((action) => {
+        setUserAlbums((prevState) => ({
+          ...prevState,
+          [userId]: action.payload,
+        }));
+      });
+    }
+  };
+
+  const handlePhotosClick = (albumId) => {
+    if (albumPhotos[albumId]) {
+      return;
+    }
+
+    setLoadingPhotos((prevState) => ({
+      ...prevState,
+      [albumId]: true,
+    }));
+
+    dispatch(fetchPhotosById(albumId)).then((action) => {
+      setAlbumPhotos((prevState) => ({
+        ...prevState,
+        [albumId]: action.payload,
+      }));
+
+      setLoadingPhotos((prevState) => ({
+        ...prevState,
+        [albumId]: false,
+      }));
+    });
+  };
+
+  const errorMessage = useSelector((state) => state.users.errorMessage);
 
   return (
     <div className={styles.container}>
-      <Typography
-        className={styles.typographyStyle}
-        gutterBottom
-        variant="h5"
-        component="div"
-        style={{ marginLeft: "650px" }}
-      >
-        List of users
-      </Typography>
-      {users.map((user) => (
-        <Card
-        className={styles.cardStyle}
-          style={{height:"auto" }}
-          key={user.id}
-        >
-          <Typography
-            className={styles.typographyStyle}
-            gutterBottom
-            variant="h5"
-            component="div"
-          >
-            {user.name}
-          </Typography>
-          <Typography
-            className={styles.typographyStyle}
-            variant="body2"
-            color="text.secondary"
-          >
-            Email: {user.email}
-          </Typography>
-          <Button
-          style={{margin: '0 auto', display: "flex",marginBottom:"10px"}}
-            onClick={() => dispatch(fetchAlbumById(user.id))}
-            variant="contained" 
-            color="success"
-          >
-            Album
-          </Button>
-          {albums.map((album) => (
-            <Card  key={album.id}>
-              <Typography
-                className={styles.typographyStyle}
-                gutterBottom
-                variant="h5"
-                component="div"
-              >
-                User albums
-              </Typography>
-                  <hr />
-                  <Typography
-                    className={styles.typographyStyle}
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                  >
-                    Name of album: {album.title}
-                  </Typography>
+      <Grid container spacing={2}>
+        {users.map((user) => (
+          <Grid item key={user.id} xs={12} sm={4} md={4} lg={6}>
+            <Card sx={{ p: 2, textAlign: "center" }}>
+              <Typography variant="h6">{user.name}</Typography>
+              {selectedUser === user.id ? (
+                <>
+                  {userAlbums[user.id] ? (
+                    userAlbums[user.id].map((album) => (
+                      <div key={album.id} style={{ marginTop: "16px" }}>
+                        <Typography variant="subtitle1">
+                          {album.title}
+                        </Typography>
+                        {albumPhotos[album.id] ? (
+                          <>
+                            {loadingPhotos[album.id] ? (
+                              <CircularProgress />
+                            ) : (
+                              <ImageList
+                                cols={3}
+                                sx={{
+                                  overflow: "hidden",
+                                  borderRadius: "8px",
+                                }}
+                              >
+                                {albumPhotos[album.id].map((photo) => (
+                                  <ImageListItem
+                                    key={photo.id}
+                                    sx={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      cursor: "pointer",
+                                      maxWidth: "150px",
+                                      maxHeight: "150px",
+                                    }}
+                                  >
+                                    <img
+                                      src={photo.thumbnailUrl}
+                                      alt={photo.title}
+                                      style={{
+                                        maxWidth: "100%",
+                                        maxHeight: "100%",
+                                      }}
+                                    />
+                                  </ImageListItem>
+                                ))}
+                              </ImageList>
+                            )}
+                          </>
+                        ) : (
+                          <Button
+                            onClick={() => handlePhotosClick(album.id)}
+                            disabled={loadingPhotos[album.id]}
+                            variant="contained"
+                            sx={{ mt: 2 }}
+                          >
+                            {loadingPhotos[album.id] ? (
+                              <CircularProgress size={20} />
+                            ) : (
+                              "Photos"
+                            )}
+                          </Button>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    <CircularProgress />
+                  )}
                   <Button
-                  style={{margin: '0 auto', display: "flex",marginBottom:"10px"}}
-                    onClick={() => dispatch(fetchPhotosById(album.id))}
-                    variant="contained" 
-                    color="success"
+                    onClick={handleAlbumClick}
+                    variant="outlined"
+                    sx={{ mt: 2 }}
                   >
-                    Photos
-                  </Button>  
-                        {photos.map((photo) => (
-                    <Card className={styles.typographyStyle}>
-                      <hr />
-                      <ImageList
-                        sx={{width: 500,height: 200,overflowY: "auto"}}
-                        cols={3}
-                        rowHeight={164}
-                      >
-                          <ImageListItem key={photo.id}>
-                            <img src={photo.url} alt="error" />
-                          </ImageListItem>
-                      </ImageList>
-                    </Card>
-                        ))}
-              </Card>
-              ))}
+                    Close
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  onClick={() => handleAlbumClick(user.id)}
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 2 }}
+                >
+                  Albums
+                </Button>
+              )}
             </Card>
-          
-      ))}
+          </Grid>
+        ))}
+      </Grid>
+      {errorMessage && <Typography>Error loading data</Typography>}
     </div>
   );
 };

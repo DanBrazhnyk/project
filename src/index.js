@@ -13,6 +13,7 @@ import { Login } from './Pages/Login/Login';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import Registration from './Pages/Login/registration/Registration';
 import ForgotPassword from './Pages/Login/forgotPassword/forgotPassword';
+import Home from './Pages/Home/Home';
 const router = createHashRouter([
   {
     path: "/",
@@ -22,6 +23,10 @@ const router = createHashRouter([
         path: "/",
         element: <MainMenu />,
         children: [
+          {
+            path: "/",
+            element: <Home />,
+          },
           {
             path: "/Voting",
             element: <Voting />,
