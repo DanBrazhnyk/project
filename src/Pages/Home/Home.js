@@ -200,14 +200,50 @@ const Home = () => {
             >
               <fieldset className={styles.aboutStyle}>
                 <legend>
-                  lol
+                  My activities
                 </legend>
-                <Typography
-                  className={styles.typographyStyle}
-                  variant="body1"
-                >
-                  Motivated Junior Front-End
-                </Typography>
+                <motion.ul>
+                  <motion.li
+                    initial={{ x: -48, opacity: 0.2 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ display: "none" }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    Basketball
+                  </motion.li>
+                  <motion.li
+                    initial={{ x: -48, opacity: 0.2 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ display: "none" }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    Football
+                  </motion.li>
+                   <motion.li
+                    initial={{ x: -48, opacity: 0.0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ display: "none" }}
+                    transition={{ duration: 0.6 }}
+                  >
+                   Tennis
+                  </motion.li>
+                  <motion.li
+                    initial={{ x: -48, opacity: 0.0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ display: "none" }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    React Native
+                  </motion.li> 
+                  <motion.li
+                    initial={{ x: -48, opacity: 0.0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ display: "none" }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    Learning new languages
+                  </motion.li> 
+                </motion.ul>
               </fieldset>
             </Paper>
           </motion.div>
@@ -223,27 +259,24 @@ const Home = () => {
           >
             <Paper
               className={styles.profileDescription}
-              style={{ borderRadius: "14px" }}
+              style={{ borderRadius: "14px",marginLeft:"40px",height:"200px" }}
             >
               <fieldset className={styles.aboutStyle}>
                 <legend >
                   My projects
                 </legend>
-                <motion.ul>
+                <motion.ul style={{marginLeft:"-20px"}}>
                   <motion.li
                     initial={{ x: -48, opacity: 0.2 }}
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ display: "none" }}
                     transition={{ duration: 0.6 }}
                   >
-                    React functional project
+                    React functional project (Example login and password login:james@gmail.com password:12345A)
                   </motion.li>
-                  <Typography
-                    className={styles.typographyStyle}
-                    variant="body1"
-                  >
-                    Motivated Junior Front-End
-                  </Typography>
+                  <Link target="_blank" href="https://danbrazhnyk.github.io/project/#/login" style={{textDecoration:"none"}}>
+                  Click here
+                  </Link>
                   <motion.li
                     initial={{ x: -48, opacity: 0.2 }}
                     animate={{ x: 0, opacity: 1 }}
