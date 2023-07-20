@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add, edit, deleteTodo, addInput, editInput, saveEdit } from "../todoSlice/todoSlice";
+import React from "react";
+import { add,edit, deleteTodo, addInput, editInput, saveEdit } from "../../../slice/todoSlice/TodoSlice";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "../assets/Todo.module.css";
 
-export default function InputToDo() {
+const InputToDo=()=> {
   const inputValue = useSelector((state) => state.methods.inputValue);
   const editValue = useSelector((state) => state.methods.editValue);
   const todos = useSelector((state) => state.methods.listTODO);
@@ -71,3 +72,4 @@ export default function InputToDo() {
     </div>
   );
 }
+export default React.memo(InputToDo) 

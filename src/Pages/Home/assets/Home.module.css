@@ -1,0 +1,140 @@
+.styledPaper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 460px;
+  height: 625px;
+  margin: 10px auto;
+  border-radius: 20px;
+  background-color: #e2f4ff;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.fieldsetContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  margin-left: 13px;
+  max-width: 146px;
+}
+
+.profileInfo {
+  height: 225px;
+  width: 382px;
+  margin: 22px 20px 0 20px;
+  border-radius: 20px;
+}
+
+.profileText {
+  font-size: 24px;
+  color: #79838b;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.profileFieldset {
+  font-size: 10px;
+  color: #b8c5d0;
+  border: none;
+}
+
+.profileFieldset legend {
+  font-weight: bold;
+}
+
+.profileSubText {
+  width: 146px;
+  height: 13px;
+  font-size: 14px;
+  color: #79838b;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.buttonContainer {
+  width: 210px;
+  height: 32px;
+  margin-top: 20px;
+}
+
+.profileButton {
+  width: 62px;
+  height: 22px;
+  margin: 5px 3px;
+  font-size: 13px;
+  border-radius: 16px;
+  color: #4bc9fe;
+  background-color: #ffffff;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.activeButton {
+  background-color: #4bc9fe;
+  color: #ffffff;
+}
+
+.profileDescription {
+  width: 375px;
+  height: 172px;
+  margin: 20px;
+  border-radius: 14px;
+}
+
+.profileLinks {
+  padding: 10px;
+  width: 360px;
+  height: 91px;
+  margin:0px 20px 0px 20px;
+}
+
+.typographyStyle {
+  color: #8e99a1;
+  font-size: 14px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.aboutStyle {
+  color: #6b7379;
+  font-size: 14px;
+  margin: 13px 17px 15px 17px;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+.aboutWeb {
+  color: #6b7379;
+  font-size: 14px;
+  margin: 13px 0px 15px 11px;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.btnLink {
+  margin-top: 16px;
+  margin-bottom: 15px;
+}
+
+.btnLinkedin {
+  margin-right: 23px;
+  margin-left: 65px;
+  color: #838d95;
+}
+.btnLinkedin:hover{
+  color:rgb(161, 22, 22);
+  scale: 1.2;
+}
+.btn {
+  margin-right: 23px;
+  color: #838d95;
+}
+.btn:hover{
+  color:rgb(161, 22, 22);
+  scale: 1.2;
+}
+

@@ -166,4 +166,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default  React.memo(Contacts);

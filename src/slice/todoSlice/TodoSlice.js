@@ -14,7 +14,7 @@ export const methodsTODO = createSlice({
   reducers: {
     add: (state) => {
       if (state.inputValue.trim() === "") {
-        alert("Пожалуйста, заполните поле");
+        alert("Please fill in the field");
       } else {
         state.listTODO.push(state.inputValue);
         state.inputValue = "";
@@ -26,7 +26,7 @@ export const methodsTODO = createSlice({
     },
     saveEdit: (state) => {
       if (state.editValue.trim() === "") {
-        alert("Пожалуйста, заполните поле");
+        alert("Please fill in the field");
       } else {
         state.listTODO[state.itemIndex] = state.editValue;
         state.editMode = false;

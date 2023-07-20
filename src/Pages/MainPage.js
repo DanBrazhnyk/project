@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, Link, NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { isNotLogined } from "./Login/loginSlice/loginSlice";
+import { isNotLogined } from "../slice/loginSlice/LoginSlice";
 import { useNavigate } from "react-router-dom";
 
 const MainMenu = () => {
@@ -129,4 +129,4 @@ const MainMenu = () => {
   );
 };
 
-export default MainMenu;
+export default React.memo(MainMenu);

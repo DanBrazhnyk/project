@@ -2,18 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import MainMenu from './Pages/MainPage';
-import Todo from './todo_list/Todo';
-import Voting from './voting/components/Voting';
-import UserList from './list_users/components/ListUsers';
-import Contacts from './contacts/components/Contacts';
+import Todo from './Pages/todo_list/Todo';
+import Voting from "./Pages/voting/components/Voting"
+import UserList from './Pages/list_users/components/ListUsers';
+import Contacts from "./Pages/contacts/components/Contacts"
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from './store/Store';
-import { Login } from './Pages/Login/Login';
-import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
-import Registration from './Pages/Login/registration/Registration';
-import ForgotPassword from './Pages/Login/forgotPassword/forgotPassword';
-import Home from './Pages/Home/Home';
+import  Login  from './Pages/login/Login';
+import PrivateRoute from './privateRoute/PrivateRoute';
+import Registration from "./registration/Registration";
+import ForgotPassword from './forgotPassword/ForgotPassword';
+import Home from './Pages/home/Home';
 const router = createHashRouter([
   {
     path: "/",

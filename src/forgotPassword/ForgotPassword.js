@@ -1,16 +1,18 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { inputEmail,inputPassword,EmptyFields,registration} from "../loginSlice/loginSlice";
+import { EmptyForgot, inputEmail, forgotPassword } from "../slice/loginSlice/LoginSlice";
 import { Link } from "react-router-dom";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Paper from "@mui/material/Paper";
-import VerifiedIcon from '@mui/icons-material/Verified';
-const Registration =()=>{
-    const dispatch = useDispatch();
+
+const ForgotPassword = () => {
+  const dispatch = useDispatch();
   const emailValue = useSelector((state) => state.login.emailValue);
-  const password = useSelector((state) => state.login.passwordValue);
+  const password = useSelector((state) => state.login.foundPassword);
 
   return (
     <div
@@ -33,6 +35,16 @@ const Registration =()=>{
           textAlign: "center",
         }}
       >
+        <Typography
+          style={{
+            width: "400px",
+            marginBottom: "20px",
+          }}
+          component="h1"
+          variant="h5"
+        >
+          If you forgot your password, please write your email, which is registered on this website. After finding your email in our database, we'll show you the password.
+        </Typography>
         <TextField
           style={{
             width: "500px",
@@ -45,32 +57,31 @@ const Registration =()=>{
             dispatch(inputEmail(event.target.value));
           }}
         />
-        <TextField
-          style={{
-            width: "500px",
-            marginBottom: "20px",
-          }}
-          id="demo-helper-text-misaligned-no-helper"
-          label="Your password"
-          value={password}
-          onChange={(event) => {
-            dispatch(inputPassword(event.target.value));
-          }}
-        />
         <Button
           variant="outlined"
-          startIcon={<VerifiedIcon />}
-          onClick={() => dispatch(registration())}
+          startIcon={<LockOpenIcon />}
+          onClick={() => dispatch(forgotPassword())}
         >
-          Register
+          Show password
         </Button>
-        <Link to="/login" onClick={() => dispatch(EmptyFields())} style={{ marginTop: "20px" }}>
+        <Typography
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            marginTop: "20px",
+          }}
+          component="h1"
+          variant="h5"
+        >
+          Your password: {password}
+        </Typography>
+        <Link to="/login" onClick={() => dispatch(EmptyForgot())} style={{ marginTop: "20px" }}>
           <Button startIcon={<ArrowBackIcon />}>Back to login page</Button>
         </Link>
       </Paper>
     </div>
   );
-}
-export default Registration
+};
 
-
+export default React.memo(ForgotPassword);

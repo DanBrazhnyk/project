@@ -14,16 +14,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch} from "react-redux";
-import { signIN, inputEmail, inputPassword } from "./loginSlice/loginSlice";
+import { signIN, inputEmail, inputPassword } from "../../slice/loginSlice/LoginSlice";
 import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
     <Typography style={{ display: "flex", justifyContent: "center", alignItems: "center" }} variant="body2" color="text.secondary"  {...props}>
       {'Copyright © '}
-      <Typography style={{ marginRight: "20px", marginLeft: "20px" }} color="inherit">
-        Your Website
-      </Typography>{' '}
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -32,7 +30,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export const Login = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -70,7 +68,7 @@ export const Login = () => {
           </Typography>
           <Box sx={{ mt: 1 }}>
             <form onSubmit={formik.handleSubmit}>
-              <TextField
+              <TextField 
                 margin="normal"
                 required
                 fullWidth
@@ -133,3 +131,5 @@ export const Login = () => {
     </ThemeProvider>
   );
 }
+
+export default React.memo(Login)

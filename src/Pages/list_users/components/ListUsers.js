@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchAlbumById,fetchPhotosById,} from "../userSlice/userSlice";
+import {fetchAlbumById,fetchPhotosById} from "../../../slice/userSlice/UserSlice";
 import {Button,Card,CircularProgress,Grid,ImageList,ImageListItem,Typography} from "@mui/material";
 import styles from "../assets/List.module.css";
 
@@ -160,4 +160,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default React.memo(UserList);

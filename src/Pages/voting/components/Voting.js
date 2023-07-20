@@ -5,8 +5,8 @@ import ThumbUpAlt from "../Icons/ThumbUpAltIcon";
 import MoodBad from "../Icons/MoodBadIcon";
 import SentimentVeryDissatisfied from "../Icons/SentimentVeryDissatisfiedIcon";
 import InsertEmoticon from "../Icons/InsertEmoticonIcon";
-import { findMax } from "../functions/findMax";
-import { renderSwitch } from "../functions/renderSwitch";
+import { findMax } from "../functions/FindMax";
+import { renderSwitch } from "../functions/RenderSwitch";
 import Button from "@mui/material/Button";
 import styles from "../assets/Voting.module.css";
 
