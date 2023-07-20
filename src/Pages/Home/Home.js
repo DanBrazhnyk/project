@@ -196,13 +196,13 @@ const Home = () => {
           >
             <Paper
               className={styles.profileDescription}
-              style={{ borderRadius: "14px" }}
+              style={{ borderRadius: "14px",marginLeft:"40px" }}
             >
               <fieldset className={styles.aboutStyle}>
                 <legend>
                   My activities
                 </legend>
-                <motion.ul>
+                <motion.ul style={{}}>
                   <motion.li
                     initial={{ x: -48, opacity: 0.2 }}
                     animate={{ x: 0, opacity: 1 }}
